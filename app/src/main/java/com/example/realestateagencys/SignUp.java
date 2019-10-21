@@ -1,5 +1,6 @@
 package com.example.realestateagencys;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class SignUp extends AppCompatActivity {
 
@@ -18,17 +24,38 @@ public class SignUp extends AppCompatActivity {
     private Button btnReg;
     private TextView userLogin;
 
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         setUpUIViews();
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(validate()){
                     //database
+                    String user_email = userEmail.getText().toString().trim();
+                    String user_password = userPassword.getText().toString().trim();
+
+                    firebaseAuth.createUserWithEmailAndPassword(user_email,user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+
+
+                            Toast.makeText(SignUp.this,"Registration successful",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignUp.this,MainActivity.class));
+                        }else
+                            {Toast.makeText(SignUp.this,"Registration unsuccessful",Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -40,8 +67,8 @@ public class SignUp extends AppCompatActivity {
         });
     }
     private void setUpUIViews(){
-        userName = (EditText)findViewById(R.id.enterUsername);
-        userEmail= (EditText)findViewById(R.id.enterAddress);
+        userName = (EditText)findViewById(R.id.enterUserName);
+        userEmail= (EditText)findViewById(R.id.enterEmail);
         userPassword= (EditText)findViewById(R.id.enterPassword);
         phone= (EditText)findViewById(R.id.enterPhone);
         address= (EditText)findViewById(R.id.enterAddress);
@@ -55,7 +82,7 @@ public class SignUp extends AppCompatActivity {
         String email = userEmail.getText().toString();
         String password = userPassword.getText().toString();
 
-        if (name.isEmpty() && password.isEmpty() && email.isEmpty()) {
+        if (name.isEmpty() || password.isEmpty() || email.isEmpty()) {
 
 
             Toast.makeText(this,"Please enter Username,Email and password",Toast.LENGTH_SHORT).show();

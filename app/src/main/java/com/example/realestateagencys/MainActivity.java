@@ -1,7 +1,9 @@
 package com.example.realestateagencys;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.icu.text.IDNA;
@@ -11,7 +13,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewAnimator;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView Warning;
     private Button Login;
     private Button Register;
+    private TextView userRegistration;
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
     private int counter = 5;
 
@@ -27,20 +39,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Username = (EditText)findViewById(R.id.enterUsername);
         Password = (EditText)findViewById((R.id.enterPassword));
         Warning = (TextView)findViewById(R.id.incorrectAttempts);
         Login = (Button)findViewById(R.id.btnLogin);
-        Register= (Button)findViewById(R.id.btnRegister) ;
+      //  Register= (Button)findViewById(R.id.btnRegister) ;
 
+        userRegistration = (TextView)findViewById(R.id.tvRegister);
         Warning.setText("No of attempts remaining:5");
 
-        Register.setOnClickListener(new View.OnClickListener() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+
+
+       // FirebaseUser user = firebaseAuth.getCurrentUser();
+     /*   if (user !=null){
+            finish();
+            startActivity(new Intent(MainActivity.this,SecondActivity.class));
+        }
+
+     /*   Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });
+        })*/;
         Login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -49,20 +73,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        userRegistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SignUp.class));
+            }
+        });
 
     }
     private void validate(String userName,String userPassword ){
-        if((userName.equals( "Admin"))&&(userPassword.equals("1234"))){
 
-            Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-            startActivity(intent);
-        }else{
-            counter--;
-            Warning.setText("No of attempts remaining: "+String.valueOf(counter ));
-            if(counter==0){
-                Login.setEnabled(false);
+        progressDialog.setMessage("It is gonna take some seconds");
+        progressDialog.show();
+
+        firebaseAuth.signInWithEmailAndPassword(userName,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful()){
+                    progressDialog.dismiss();
+                    Toast.makeText(MainActivity.this,"Login successful",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,SecondActivity.class));
+                }
+                else{
+                    Toast.makeText(MainActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
+                    counter--;
+                    Warning.setText("No of attempts remaining: "+counter);
+                    progressDialog.dismiss();
+                    if(counter==0){
+                        Login.setEnabled(false);
+                    }
+                }
             }
-        }
+        });
 
     }
 }
