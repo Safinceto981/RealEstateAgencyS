@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class SignUp extends AppCompatActivity {
@@ -46,10 +47,8 @@ public class SignUp extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                sendEmailVerification();
 
-
-                            Toast.makeText(SignUp.this,"Registration successful",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignUp.this,MainActivity.class));
                         }else
                             {Toast.makeText(SignUp.this,"Registration unsuccessful",Toast.LENGTH_SHORT).show();
 
@@ -83,8 +82,6 @@ public class SignUp extends AppCompatActivity {
         String password = userPassword.getText().toString();
 
         if (name.isEmpty() || password.isEmpty() || email.isEmpty()) {
-
-
             Toast.makeText(this,"Please enter Username,Email and password",Toast.LENGTH_SHORT).show();
 
         }else {
@@ -92,5 +89,23 @@ public class SignUp extends AppCompatActivity {
 
         }return result;
 
+    }
+
+    private void sendEmailVerification(){
+        final FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(SignUp.this,"Successfully Registered,Verification emai sent!",Toast.LENGTH_SHORT).show();
+                    firebaseAuth.signOut();
+                    finish();
+                    startActivity(new Intent(SignUp.this,MainActivity.class));
+
+                }else {
+                    Toast.makeText(SignUp.this,"Verification email has not been sent!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
