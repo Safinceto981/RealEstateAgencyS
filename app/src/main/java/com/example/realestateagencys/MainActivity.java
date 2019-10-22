@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         userRegistration = (TextView)findViewById(R.id.tvRegister);
 
-        forgotPassword= (TextView)findViewById(R.id.etPassEmail);
+        forgotPassword= (TextView)findViewById(R.id.tvForgotPassword);
         Warning.setText("No of attempts remaining:5");
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -102,8 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if(task.isSuccessful()){
                     progressDialog.dismiss();
-                    Toast.makeText(MainActivity.this,"Login successful",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,SecondActivity.class));
+                  //  Toast.makeText(MainActivity.this,"Login successful",Toast.LENGTH_SHORT).show();
+
+                    checkEmailVerification();
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
@@ -115,7 +116,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
+
         });
 
+
+    }
+    private void checkEmailVerification(){
+        FirebaseUser firebaseUser=firebaseAuth.getInstance().getCurrentUser();
+        Boolean emailflag = firebaseUser.isEmailVerified();
+        if (emailflag) {
+            finish();
+            startActivity(new Intent(MainActivity.this,SecondActivity.class));
+
+        }else {
+            Toast.makeText(this,"Verify your email",Toast.LENGTH_SHORT).show();
+            firebaseAuth.signOut();
+        }
     }
 }
