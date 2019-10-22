@@ -53,9 +53,8 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        if (user !=null){
+       // FirebaseUser user = firebaseAuth.getCurrentUser();
+     /*   if (user !=null){
             finish();
             startActivity(new Intent(MainActivity.this,SecondActivity.class));
         }
@@ -93,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(task.isSuccessful()){
                     progressDialog.dismiss();
-                  //  Toast.makeText(MainActivity.this,"Login successful",Toast.LENGTH_SHORT).show();
-                    checkEmailVerification();
+                    Toast.makeText(MainActivity.this,"Login successful",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,SecondActivity.class));
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
@@ -108,18 +107,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private  void checkEmailVerification(){
-        FirebaseUser firebaseUser=firebaseAuth.getInstance().getCurrentUser();
-        Boolean emailflag = firebaseUser.isEmailVerified();
-        if(emailflag){
-            finish();
-            startActivity(new Intent(MainActivity.this,SecondActivity.class));
-            Toast.makeText(MainActivity.this,"Login successful",Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this,"Verify your email",Toast.LENGTH_SHORT).show();
-            firebaseAuth.signOut();
-        }
     }
 }

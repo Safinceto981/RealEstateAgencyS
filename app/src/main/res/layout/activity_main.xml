@@ -48,14 +48,14 @@
 
     <TextView
         android:id="@+id/incorrectAttempts"
-        android:layout_width="173dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="No of incorrect attempts:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <TextView
         android:id="@+id/tvRegister"
@@ -70,15 +70,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/incorrectAttempts"
         app:layout_constraintVertical_bias="0.138" />
-
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="167dp"
-        android:layout_height="26dp"
-        android:text="Forgot password?"
-        app:layout_constraintBottom_toTopOf="@+id/incorrectAttempts"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
