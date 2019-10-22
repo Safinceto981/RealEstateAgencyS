@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
+    private TextView forgotPassword;
+
     private int counter = 5;
 
     @Override
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
       //  Register= (Button)findViewById(R.id.btnRegister) ;
 
         userRegistration = (TextView)findViewById(R.id.tvRegister);
+
+        forgotPassword= (TextView)findViewById(R.id.etPassEmail);
         Warning.setText("No of attempts remaining:5");
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -77,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,SignUp.class));
+            }
+        });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PasswordActivity.class));
             }
         });
 
