@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">RealEstateAgencyS</string>
+    <string name="facebook_app_id">553171795227678</string>
+    <string name="fb_login_protocol_scheme">fb553171795227678</string>
+    <string name="title_activity_navigation_bar">navigationBar</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string-array name="choiceType">
+        <item>Продава</item>
+        <item>Дава под наем</item>
+
+    </string-array>
+
+    <string-array name="choicePlace">
+        <item>София</item>
+        <item>Пловдив</item>
+        <item>Варна</item>
+        <item>Бургас</item>
+        <item>Велико Търново</item>
+        <item>Стара Загора</item>
+
+
+    </string-array>
+
+    <string-array name="choicePlaceType">
+        <item>Едностаен</item>
+        <item>Двустаен</item>
+        <item>Тристаен</item>
+        <item>Многостаен</item>
+        <item>Къща</item>
+        <item>Офис</item>
+        <item>Мезонет</item>
+        <item>Ателие,Таван,Студио</item>
+
+
+    </string-array>
+
 </resources>

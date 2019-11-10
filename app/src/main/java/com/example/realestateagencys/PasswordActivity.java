@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class PasswordActivity extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class PasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
 
-        passwordEmail=(EditText)findViewById(R.id.etPassEmail);
+        passwordEmail=(EditText)findViewById(R.id.etUserNamePass);
         resertPassword= (Button) findViewById(R.id.btnPassword);
 
         firebaseAuth=FirebaseAuth.getInstance();
@@ -36,8 +35,6 @@ public class PasswordActivity extends AppCompatActivity {
                 String useremail = passwordEmail.getText().toString().trim();
                 if(useremail.equals("")){
                     Toast.makeText(PasswordActivity.this,"Enter your email",Toast.LENGTH_SHORT).show();
-
-
                 }
                 else {
                     firebaseAuth.sendPasswordResetEmail(useremail).addOnCompleteListener(new OnCompleteListener<Void>() {
