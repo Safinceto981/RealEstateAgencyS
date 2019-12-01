@@ -17,10 +17,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#FAFAFA"
+        android:background="#79FAFAFA"
         android:text="Real Estate Agency"
+
         android:textColor="#EA80FC"
         android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -33,64 +35,105 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:background="#80FFFFFF"
         android:text="Logout"
         android:textColor="#EA80FC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.484" />
+        app:layout_constraintVertical_bias="0.744" />
 
     <Spinner
         android:id="@+id/spinnerChoiceType"
-        android:layout_width="110dp"
-        android:layout_height="20dp"
-        android:background="#FAFAFA"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerChoicePlaceType"
-        app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412" />
-
-    <Spinner
-        android:id="@+id/spinnerChoicePlace"
-        android:layout_width="110dp"
-        android:layout_height="20dp"
-        android:background="#FAFAFA"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerChoicePlaceType"
-        app:layout_constraintHorizontal_bias="0.369"
-        app:layout_constraintStart_toEndOf="@+id/spinnerChoiceType"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412" />
-
-    <Spinner
-        android:id="@+id/spinnerChoicePlaceType"
-        android:layout_width="110dp"
-        android:layout_height="20dp"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:background="#FAFAFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
-
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412" />
+        app:layout_constraintVertical_bias="0.406" />
+
+    <Spinner
+        android:id="@+id/spinnerChoicePlace"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:background="#FAFAFA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinnerChoiceType"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.406" />
 
     <Button
         android:id="@+id/btnSpinnerSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#80FFFFFF"
         android:text="Търси"
         app:layout_constraintBottom_toTopOf="@+id/btnLogout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerChoicePlace"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.285" />
+
+    <Button
+        android:id="@+id/searchAreaBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#80FFFFFF"
+
+        android:text="by Area "
+        app:layout_constraintBottom_toTopOf="@+id/addType"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSpinnerSearch"
+        app:layout_constraintVertical_bias="0.463" />
+
+    <Button
+        android:id="@+id/addType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#80FFFFFF"
+
+        android:text="Add type"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogout"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSpinnerSearch"
+        app:layout_constraintVertical_bias="0.724" />
+
+    <Button
+        android:id="@+id/addHouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add house"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAvHouses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available Houses"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

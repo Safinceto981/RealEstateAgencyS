@@ -24,6 +24,17 @@
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSell"
+        app:layout_constraintVertical_bias="0.871" />
+
+    <ListView
+        android:layout_width="409dp"
+        android:layout_height="387dp"
+        app:layout_constraintBottom_toTopOf="@+id/BtnSellBack"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSell" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.realestateagencys.ui.admin.AddArea;
+import com.example.realestateagencys.ui.view.NearbyAreas;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
            finish();
+
             startActivity(new Intent(MainActivity.this, SecondActivity.class));
         }
 
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     //  Toast.makeText(MainActivity.this,"Login successful",Toast.LENGTH_SHORT).show();
 
-                    startActivity(new Intent(MainActivity.this, SecondActivity.class));
+
 
                     checkEmailVerification();
                 } else {
@@ -122,10 +125,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void checkEmailVerification() {
         FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
         Boolean emailflag = firebaseUser.isEmailVerified();
-        startActivity(new Intent(MainActivity.this, SecondActivity.class));
+
+
 
         if (emailflag) {
             finish();

@@ -42,7 +42,7 @@ public class UpdateProfile extends AppCompatActivity {
         firebaseAuth= FirebaseAuth.getInstance();
         firebaseDatabase= FirebaseDatabase.getInstance();
 
-        final DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
+        final DatabaseReference databaseReference=firebaseDatabase.getReference("users").child(firebaseAuth.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -72,7 +72,7 @@ public class UpdateProfile extends AppCompatActivity {
                 String address = newUserAddress.getText().toString();
 
                 UserProfile userProfile= new UserProfile(age,email,name,phone,address);
-                databaseReference.setValue(userProfile);
+                databaseReference.child(firebaseAuth.getUid()).setValue(userProfile);
 
                 finish();
             }

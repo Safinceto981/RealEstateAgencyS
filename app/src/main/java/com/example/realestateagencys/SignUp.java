@@ -49,8 +49,12 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         setUpUIViews();
-        myRef= FirebaseDatabase.getInstance().getReference().child("user");
+        myRef= FirebaseDatabase.getInstance().getReference("users");
 
+
+
+
+     ;
         firebaseAuth = FirebaseAuth.getInstance();
       //  firebaseStorage= FirebaseStorage.getInstance();
         //storageReference  = firebaseStorage.getReference();
@@ -68,6 +72,8 @@ public class SignUp extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+
+
 
                                 sendEmailVerification();
 
@@ -148,12 +154,15 @@ public class SignUp extends AppCompatActivity {
     }
     private void sendUserData(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+        DatabaseReference myRef = firebaseDatabase.getReference("users");
+
+
+
 
 
 
         UserProfile userProfile= new UserProfile(age,email,name,phone,address);
-        myRef.setValue(userProfile);
+        myRef.child(firebaseAuth.getUid()).setValue(userProfile);
 
     }
 }

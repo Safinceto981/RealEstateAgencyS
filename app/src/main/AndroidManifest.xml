@@ -11,9 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RentActivity"></activity>
+        <activity android:name=".ui.model.HouseArrangment" />
+        <activity android:name=".ui.model.House" />
+
+        <activity android:name=".ui.housearrangment.HouseArrangmentDashboard"/>
+        <activity android:name=".ui.adapter.AvailableHouseAdapter"/>
+        <activity android:name=".ui.view.AvailableHouses" />
+        <activity android:name=".RentActivity" />
         <activity android:name=".SellActivity" />
-        <activity android:name=".MyArrangements" />
+        <activity android:name=".ui.view.MyArrangements" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -40,6 +46,15 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".SignUp" />
+        <activity android:name=".ui.view.MyArrangmentsDetails"/>
+        <activity android:name=".ui.view.HouseTypes"/>
+        <activity android:name=".ui.admin.AddArea"/>
+        <activity android:name=".ui.housearrangment.HouseOptionsFilter"/>
+        <activity android:name=".ui.admin.AddHouseType"/>
+        <activity android:name=".ui.admin.AddHouse"/>
+
+
+        <activity android:name=".ui.view.NearbyAreas"/>
         <activity android:name=".SecondActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
